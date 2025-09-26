@@ -12,6 +12,8 @@ function sendreq() {
 	client.write('sending request!!');
 };
 
+document.getElementById("reqsend").addEventListener("click", sendreq);
+
 client.setEncoding('utf8');
 
 client.on('data', (data) => {
