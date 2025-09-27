@@ -1,29 +1,20 @@
-// const net = require(['net']);
-import net from 'node:net';
-const PORT = 11110;
-const HOSTNAME = '5.80.142.132';
+// const socket = new WebSocket("ws://5.80.142.132");
+// const WebSocket = require('ws');
+const socket = new WebSocket("ws://5.80.142.132:11110");
+document.getElementById("reqsend").addEventListener("click", reqsend);
 
-const client = net.createConnection(PORT, HOSTNAME, () => {
-	console.log('Connected to server');
-	// client.write('yo');
-});
-
-function sendreq() {
-	client.write('sending request!!');
+socket.onopen = () => {
+	console.log('connected');
 };
 
-document.getElementById("reqsend").addEventListener("click", sendreq);
+function sendreq() {
+	socket.send('hi.');
+};
 
-client.setEncoding('utf8');
+socket.onmessage = (event) => {
+	console.log('received: ', event.data);
+};
 
-client.on('data', (data) => {
-	console.log(`Received data from server: ${data}`);
-});
-
-client.on('end', () => {
-	console.log('Disconnected from server');
-});
-
-client.on('error', (err) => {
-	console.error('Connection error: ', err);
-});
+socket.onclose = () => {
+	console.log('disconnected');
+};
