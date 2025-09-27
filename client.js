@@ -8,8 +8,8 @@ const DecryptData = new TextDecoder();
 function account_do(type) {
 	const username_val = document.getElementById("username").value;
 	const password_val = document.getElementById("password").value;
-	const token = SubtleCrypto.digest("SHA-256", EncryptData.encode(username_val.join(password_val)));
-	socket.send(DecryptData.decode(token).join(type));
+	const token = SubtleCrypto.digest("SHA-256", EncryptData.encode(username_val.concat(password_val)));
+	socket.send(DecryptData.decode(token).concat(type));
 };
 
 function signup_check(signup_status) {
