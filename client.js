@@ -23,6 +23,7 @@ function signup_check(signup_status) {
 	switch (signup_status) {
 		case "0":
 			console.log("signup success");
+			panel_switch();
 			break;
 		case "1":
 			console.log("signup failed");
@@ -34,6 +35,7 @@ function login_check(login_status) {
 	switch (login_status) {
 		case "0":
 			console.log("login success");
+			panel_switch();
 			break;
 		case "1":
 			console.log("login failed");
