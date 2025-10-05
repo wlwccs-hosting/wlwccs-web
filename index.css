@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+	background-color: #4b4e52;
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+ 	font-weight: 400;
+ 	font-style: normal;
+}
