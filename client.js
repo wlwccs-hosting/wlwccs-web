@@ -33,7 +33,7 @@ function panel_switch() {
 };
 
 function accountent_check(status) {
-	switch (data_cut) {
+	switch (status) {
 		case "L1":
 			console.log("login failed");
 			break;
