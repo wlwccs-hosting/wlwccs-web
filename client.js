@@ -23,6 +23,7 @@ function panel_switch() {
 	panel_heading.innerText = "Server Panel";
 	const toggle_but = document.createElement("button");
 	toggle_but.setAttribute("onclick", "toggle_req()");
+	toggle_but.innerText = "Toggle Server";
 	const port_contents = document.createElement("p");
 	const v4port = (parseInt(account_id)+11111).toString();
 	const v6port = (parseInt(account_id)+11112).toString();
