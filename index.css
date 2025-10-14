@@ -22,9 +22,17 @@ body {
         color: white;
 	background-color: #3b3d40;
 	border-radius: 12px;
-	padding: 5px;
+	padding: 15px;
 	border-color: white;
+	border-style: solid;
 	text-decoration: none;
+	transition-delay: 0.4s;
+}
+
+.buton:hover, button:hover {
+	padding: 20px;
+	background-color: #212224;
+	border-radius: 15px;
 }
 
 .textinput {
@@ -36,4 +44,13 @@ body {
         background-color: #3b3d40;
         border-radius: 12px;
         border-color: white;
+	border-style: solid;
+}
+
+.account-panel {
+	background-color: #666b73;
+	width: 50%;
+	border-radius: 15px;
+	border-style: solid;
+	border-color: #52565c;
 }
