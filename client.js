@@ -27,7 +27,7 @@ function panel_switch() {
 	const port_contents = document.createElement("p");
 	const v4port = (parseInt(account_id)+11111).toString();
 	const v6port = (parseInt(account_id)+11112).toString();
-	port_contents.innerText = `IPv4 port: ${v4port}, IPV6 port: ${v6port}`;
+	port_contents.innerText = `IPv4 port: ${v4port}, IPv6 port: ${v6port}`;
 	const server_val = document.createElement("p");
 	server_val.innerText = "Server status: unknown";
 	server_val.id = "server_stat";
