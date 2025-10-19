@@ -14,6 +14,13 @@ function toggle_req() {
 	socket.send(account_id);
 };
 
+function submit_command() {
+	const command_send = "C".concat(command_input.value, '`', account_id);
+	socket.send(command_send);
+};
+
+const command_input = document.createElement("input");
+const command_submit = document.createElement("button");
 function panel_switch() {
 	const account_panel = document.querySelectorAll(".account-panel");
 	for (let i = 0; i < account_panel.length; i++) {
@@ -31,10 +38,21 @@ function panel_switch() {
 	const server_val = document.createElement("p");
 	server_val.innerText = "Server status: unknown";
 	server_val.id = "server_stat";
+	const command_panel = document.createElement("div");
+	command_panel.class = "command-panel";
+	command_panel.id = "command-panel";
+	command_input.class = "textinput";
+	command_input.id = "input_command";
+	command_input.type = "text";
+	command_input.name = "commandinput";
+	command_submit.setAttribute("onclick", "submit_command()");
+	command_submit.innerText = "Run Command";
+	command_submit.id = "commandsubmit";
 	document.getElementById("server-panel").appendChild(panel_heading);
 	document.getElementById("server-panel").appendChild(toggle_but);
 	document.getElementById("server-panel").appendChild(port_contents);
 	document.getElementById("server-panel").appendChild(server_val);
+	document.getElementById("server-panel").appendChild(command_panel);
 };
 
 function accountent_check(status) {
@@ -53,19 +71,6 @@ function accountent_check(status) {
 	};
 };
 
-function login_check(login_status) {
-	let login_cut = login_status.replace("L", "");
-	switch (login_cut) {
-		case "1":
-			console.log("login failed");
-			break;
-		default:
-			console.log("login success");
-			account_id = login_cut;
-			panel_switch();
-			break;
-	};
-};
 
 socket.onopen = () => {
 	console.log('connected');
@@ -75,6 +80,23 @@ socket.onmessage = (event) => {
 	console.log('received: ', event.data);
 	if (event.data == "none" || event.data == "off" || event.data == "on") {
 		document.getElementById("server_stat").innerText = `Server status: ${event.data}`;
+		if (event.data == "on") {
+			document.getElementById("command-panel").appendChild(command_input);
+			document.getElementById("command-panel").appendChild(command_submit);
+		} else {
+			const companel_clear = document.querySelectorAll(".command-panel");
+			for (let i = 0; i < companel_clear.length; i++) {
+				if (companel_clear[i].name == command_input.name) {
+					command_input.remove();
+					const companel_filler = document.createElement("p");
+					companel_filler.innerText = "Server is off or doesn't exist.";
+					document.getElementById("command-panel").appendChild(companel_filler);
+				};
+				if (companel_clear[i].id == command_submit.id) {
+					command_submit.remove();
+				};
+			};
+		};
 	} else {
 		accountent_check(event.data);
 	};

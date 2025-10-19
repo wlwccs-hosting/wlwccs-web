@@ -47,7 +47,7 @@ body {
 	border-style: solid;
 }
 
-.account-panel {
+.account-panel, .command-panel {
 	background-color: #2f3133;
 	width: 50%;
 	border-radius: 15px;
