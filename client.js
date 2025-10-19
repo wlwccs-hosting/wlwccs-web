@@ -33,10 +33,11 @@ function panel_switch() {
 	toggle_but.innerText = "Toggle Server";
 	const port_contents = document.createElement("p");
 	const v4port = (parseInt(account_id)+11111).toString();
+	let v6port = "";
 	if (account_id != "1") {
-		const v6port = (parseInt(account_id)+11113).toString();
+		v6port = (parseInt(account_id)+11113).toString();
 	} else {
-		const v6port = "11113";
+		v6port = "11113";
 	};
 	port_contents.innerText = `IPv4 port: ${v4port}, IPv6 port: ${v6port}`;
 	const server_val = document.createElement("p");
