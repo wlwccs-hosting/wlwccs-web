@@ -19,8 +19,6 @@ function submit_command() {
 	socket.send(command_send);
 };
 
-const command_input = document.createElement("input");
-const command_submit = document.createElement("button");
 function panel_switch() {
 	const account_panel = document.querySelectorAll(".account-panel");
 	for (let i = 0; i < account_panel.length; i++) {
@@ -43,13 +41,12 @@ function panel_switch() {
 	const server_val = document.createElement("p");
 	server_val.innerText = "Server status: unknown";
 	server_val.id = "server_stat";
-	const command_panel = document.createElement("div");
-	command_panel.class = "command-panel";
-	command_panel.id = "command-panel";
+	const command_input = document.createElement("input");
 	command_input.class = "textinput";
 	command_input.id = "input_command";
 	command_input.type = "text";
 	command_input.name = "commandinput";
+	const command_submit = document.createElement("button");
 	command_submit.setAttribute("onclick", "submit_command()");
 	command_submit.innerText = "Run Command";
 	command_submit.id = "commandsubmit";
@@ -57,7 +54,8 @@ function panel_switch() {
 	document.getElementById("server-panel").appendChild(toggle_but);
 	document.getElementById("server-panel").appendChild(port_contents);
 	document.getElementById("server-panel").appendChild(server_val);
-	document.getElementById("server-panel").appendChild(command_panel);
+	document.getElementById("server-panel").appendChild(command_input);
+	document.getElementById("server-panel").appendChild(command_submit);
 };
 
 function accountent_check(status) {
@@ -81,33 +79,20 @@ socket.onopen = () => {
 	console.log('connected');
 };
 
+function subcom_block() {
+	console.log("Server is currently not available, stop sending commands.");
+};
+
 socket.onmessage = (event) => {
 	console.log('received: ', event.data);
 	if (event.data == "none" || event.data == "off" || event.data == "on") {
 		document.getElementById("server_stat").innerText = `Server status: ${event.data}`;
 		if (event.data == "on") {
-			const companel_check = document.querySelectorAll(".command-panel");
-			document.getElementById("command-panel").appendChild(command_input);
-			document.getElementById("command-panel").appendChild(command_submit);
-			for (let i = 0; i < companel_check.length; i++) {
-				if (companel_check[i].id == "filler") {
-					document.getElementById("filler").remove();
-				};
-			};
+			document.getElementById("command_submit").innerText = "Run Command";
+			document.getElementById("command_submit").setAttribute("onclick", "submit_command()");
 		} else {
-			const companel_clear = document.querySelectorAll(".command-panel");
-			for (let i = 0; i < companel_clear.length; i++) {
-				if (companel_clear[i].name == command_input.name) {
-					document.getElementById(command_input.id).remove();
-					const companel_filler = document.createElement("p");
-					companel_filler.innerText = "Server is off or doesn't exist.";
-					companel_filler.id = "filler";
-					document.getElementById("command-panel").appendChild(companel_filler);
-				};
-				if (companel_clear[i].id == command_submit.id) {
-					document.getElementById(command_submit.id).remove();
-				};
-			};
+			document.getElementById("command_submit").innerText = "Server is currently not available.";
+			document.getElementById("command_submit").setAttribute("onclick", "subcom_block()")
 		};
 	} else {
 		accountent_check(event.data);
