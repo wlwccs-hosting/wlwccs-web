@@ -1,5 +1,5 @@
 const socket = new WebSocket("wss://wlwccs.duckdns.org:49152");
-let account_id = "If Nathan is reading this... your roblox game will never come out >:(";
+let account_id = "freddie gibbs";
 
 const EncryptData = new TextEncoder();
 const DecryptData = new TextDecoder();
