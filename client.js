@@ -160,7 +160,9 @@ socket.onmessage = (event) => {
 	} else if (event.data[0] == 'A') {
 		panel_switch(event.data);
 	} else {
-		accountent_check(event.data);
+		if (!Error.isError(parseInt(event.data))) {
+			accountent_check(event.data);
+		};
 	};
 };
 
