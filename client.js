@@ -58,6 +58,7 @@ function create_server(bedrock, java) {
 
 function panel_switch(amount_status) {
 	if (amount_status[1] != '0') {
+		in_spanel = true;
 		const panel_heading = document.createElement("h1");
 		panel_heading.innerText = "Server Panel";
 		const toggle_but = document.createElement("button");
@@ -89,7 +90,6 @@ function panel_switch(amount_status) {
 		document.getElementById("server-panel").appendChild(command_input);
 		document.getElementById("server-panel").appendChild(command_submit);
 	} else {
-		in_spanel = true;
 		const view_heading = document.createElement("h1");
 		view_heading.innerText = "Make a Server";
 		const choice_heading = document.createElement("h2");
@@ -160,9 +160,7 @@ socket.onmessage = (event) => {
 	} else if (event.data[0] == 'A') {
 		panel_switch(event.data);
 	} else {
-		if (parseInt(event.data) != NaN) {
-			accountent_check(event.data);
-		};
+		accountent_check(event.data);
 	};
 };
 
