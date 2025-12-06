@@ -1,6 +1,7 @@
 const socket = new WebSocket("wss://wlwccs.duckdns.org:49152");
 let account_id = "freddie gibbs";
 let in_spanel = false;
+let received_status = "none";
 
 const EncryptData = new TextEncoder();
 const DecryptData = new TextDecoder();
@@ -74,7 +75,7 @@ function panel_switch(amount_status) {
 		};
 		port_contents.innerText = `IPv4 port: ${v4port}, IPv6 port: ${v6port}`;
 		const server_val = document.createElement("p");
-		server_val.innerText = "Server status: unknown";
+		server_val.innerText = `Server status: ${received_status}`;
 		server_val.id = "server_stat";
 		command_input.class = "textinput";
 		command_input.id = "input_command";
@@ -149,8 +150,9 @@ function subcom_block() {
 socket.onmessage = (event) => {
 	console.log('received: ', event.data);
 	if (in_spanel && (event.data == "none" || event.data == "off" || event.data == "on")) {
-		document.getElementById("server_stat").innerText = `Server status: ${event.data}`;
-		if (event.data == "on") {
+		received_status = event.data;
+		document.getElementById("server_stat").innerText = `Server status: ${received_status}`;
+		if (received_status == "on") {
 			command_submit.innerText = "Run Command";
 			command_submit.setAttribute("onclick", "submit_command()");
 		} else {
@@ -160,7 +162,11 @@ socket.onmessage = (event) => {
 	} else if (event.data[0] == 'A') {
 		panel_switch(event.data);
 	} else {
-		accountent_check(event.data);
+		if (event.data == "off" || event.data == "none" || event.data == "on") {
+			received_status = event.data;
+		} else {
+			accountent_check(event.data);
+		};
 	};
 };
 
