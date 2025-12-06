@@ -1,5 +1,6 @@
 const socket = new WebSocket("wss://wlwccs.duckdns.org:49152");
 let account_id = "freddie gibbs";
+let in_spanel = false;
 
 const EncryptData = new TextEncoder();
 const DecryptData = new TextDecoder();
@@ -88,6 +89,7 @@ function panel_switch(amount_status) {
 		document.getElementById("server-panel").appendChild(command_input);
 		document.getElementById("server-panel").appendChild(command_submit);
 	} else {
+		in_spanel = true;
 		const view_heading = document.createElement("h1");
 		view_heading.innerText = "Make a Server";
 		const choice_heading = document.createElement("h2");
@@ -145,7 +147,7 @@ function subcom_block() {
 
 socket.onmessage = (event) => {
 	console.log('received: ', event.data);
-	if (event.data == "none" || event.data == "off" || event.data == "on") {
+	if (in_spanel && (event.data == "none" || event.data == "off" || event.data == "on")) {
 		document.getElementById("server_stat").innerText = `Server status: ${event.data}`;
 		if (event.data == "on") {
 			command_submit.innerText = "Run Command";
