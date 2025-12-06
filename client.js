@@ -131,6 +131,7 @@ function accountent_check(status) {
 		default:
 			console.log("signup/login success");
 			account_id = status;
+			console.log(`account id: ${account_id}`);
 			panel_switch_init();
 			break;
 	};
