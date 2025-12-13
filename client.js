@@ -96,14 +96,14 @@ function panel_switch(amount_status) {
 		const choice_heading = document.createElement("h2");
 		choice_heading.innerText = "Server Choice";
 		const bedrock_choice = document.createElement("input");
-		const bedrock_text = document.createElement("label");
+		const bedrock_text = document.createElement("p");
 		bedrock_choice.id = "bedrock";
-		bedrock_text.setAttribute("for", "bedrock");
+		bedrock_choice.setAttribute("type", "radio");
 		bedrock_text.innerText = "Bedrock Server";
 		const java_choice = document.createElement("input");
-		const java_text = document.createElement("label");
+		const java_text = document.createElement("p");
 		java_choice.id = "java";
-		java_text.setAttribute("for", "java");
+		java_choice.setAttribute("type", "radio");
 		java_text.innerText = "Java Server";
 		const geyser_note = document.createElement("p");
 		geyser_note.innerText = "NOTE: If you want to setup a server with both Bedrock AND Java support - press both for a Geyser server. If no choices are picked - it defaults to Bedrock.";
