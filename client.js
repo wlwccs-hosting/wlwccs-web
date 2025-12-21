@@ -31,6 +31,12 @@ function panel_switch_init() {
 	socket.send("A#".concat(account_id));
 };
 
+let amountStatus = "";
+function server_type(amount_status) {
+	amountStatus = amount_status;
+	socket.send("T#".concat(account_id));
+};
+
 function create_server(bedrock, java) {
 	if (bedrock) {
 		// bedrock server
@@ -57,8 +63,8 @@ function create_server(bedrock, java) {
 	document.getElementById("server-panel").appendChild(create_notice2);
 };
 
-function panel_switch(amount_status) {
-	if (amount_status[1] != '0') {
+function panel_switch(port_check) {
+	if (amountStatus[1] != '0') {
 		in_spanel = true;
 		const panel_heading = document.createElement("h1");
 		panel_heading.innerText = "Server Panel";
@@ -66,12 +72,14 @@ function panel_switch(amount_status) {
 		toggle_but.setAttribute("onclick", "toggle_req()");
 		toggle_but.innerText = "Toggle Server";
 		const port_contents = document.createElement("p");
-		const v4port = (parseInt(account_id)+11111).toString();
-		let v6port = "";
-		if (account_id != "1") {
+		const v4port = "";
+		const v6port = "";
+		if (port_check[1] == "1") {
+			v4port = (parseInt(account_id)+11111).toString();
 			v6port = (parseInt(account_id)+11113).toString();
 		} else {
-			v6port = "11113";
+			v4port = (parseInt(account_id)+33333).toString();
+			v6port = (parseInt(account_id)+33335).toString();
 		};
 		port_contents.innerText = `IPv4 port: ${v4port}, IPv6 port: ${v6port}`;
 		const server_val = document.createElement("p");
@@ -151,6 +159,9 @@ socket.onmessage = (event) => {
 			command_submit.setAttribute("onclick", "subcom_block()")
 		};
 	} else if (event.data[0] == 'A') {
+		server_type(event.data);
+		// panel_switch(event.data);
+	} else if (event.data[0] == 'T') {
 		panel_switch(event.data);
 	} else {
 		if (event.data == "off" || event.data == "none" || event.data == "on") {
