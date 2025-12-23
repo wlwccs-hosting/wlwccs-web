@@ -55,12 +55,12 @@ body {
 	border-color: #52565c;
 }
 
-a-topbar {
+.a-topbar {
 	position: relative;
 	left: 40px;
 }
 
-topbar {
+.topbar {
 	position: sticky;
 	top: 1px;
 	background-color: #3b3d40;
