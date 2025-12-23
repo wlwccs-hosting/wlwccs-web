@@ -75,3 +75,8 @@ body {
 .span-heading {
 	font-size: 2em;
 }
+
+.version-title {
+	background-color: #171717;
+	border-radius: 15px;
+}
