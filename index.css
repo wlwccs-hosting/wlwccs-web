@@ -57,7 +57,8 @@ body {
 
 .a-topbar {
 	position: relative;
-	left: 40px;
+	bottom: 20px;
+	left: 100px;
 }
 
 .topbar {
