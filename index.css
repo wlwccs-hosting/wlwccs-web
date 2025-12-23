@@ -69,3 +69,7 @@ body {
 	border-color: white;
 	border-style: solid;
 }
+
+.span-heading {
+	font-size: 2em;
+}
