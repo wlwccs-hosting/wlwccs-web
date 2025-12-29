@@ -76,12 +76,16 @@ function panel_switch(port_check) {
 		let v6port = "";
 		if (port_check[1] == "1") {
 			v4port = (parseInt(account_id)+11111).toString();
-			v6port = (parseInt(account_id)+11113).toString();
+			port_contents.innerText = `IPv4 port: ${v4port}`;
 		} else {
-			v4port = (parseInt(account_id)+33333).toString();
-			v6port = (parseInt(account_id)+33335).toString();
+			if (port_check[1] == '2') {
+				v4port = (parseInt(account_id)+33333).toString();
+				port_contents.innerText = `IPv4 port: ${v4port}`;
+			} else {
+				v4port = (parseInt(account_id)+33333).toString();
+				v6port = (parseInt(account_id)+33335).toString();
+				port_contents.innerText = `IPv4 port: ${v4port}, bedrock port: ${v6port}`;
 		};
-		port_contents.innerText = `IPv4 port: ${v4port}, IPv6 port: ${v6port}`;
 		const server_val = document.createElement("p");
 		server_val.innerText = `Server status: ${received_status}`;
 		server_val.id = "server_stat";
