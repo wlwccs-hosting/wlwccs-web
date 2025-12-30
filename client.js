@@ -63,6 +63,10 @@ function create_server(bedrock, java) {
 	document.getElementById("server-panel").appendChild(create_notice2);
 };
 
+function allow_cheats() {
+	socket.send("G#AC#".concat(account_id));
+};
+
 function panel_switch(port_check) {
 	if (amountStatus[1] != '2') {
 		in_spanel = true;
@@ -97,12 +101,18 @@ function panel_switch(port_check) {
 		command_submit.setAttribute("onclick", "submit_command()");
 		command_submit.innerText = "Run Command";
 		command_submit.id = "commandsubmit";
+		const allow_cheats = document.createElement("button");
+		allow_cheats.innerText = "Toggle Cheats";
+		allow_cheats.setAttribute("onclick", "allow_cheats()");
 		document.getElementById("server-panel").appendChild(panel_heading);
 		document.getElementById("server-panel").appendChild(toggle_but);
 		document.getElementById("server-panel").appendChild(port_contents);
 		document.getElementById("server-panel").appendChild(server_val);
 		document.getElementById("server-panel").appendChild(command_input);
 		document.getElementById("server-panel").appendChild(command_submit);
+		if (port_check[1] == '1') {
+			document.getElementById("server-panel").appendChild(allow_cheats);
+		};
 	} else {
 		const view_heading = document.createElement("h1");
 		view_heading.innerText = "Make a Server";
