@@ -50,6 +50,12 @@ body {
 	border-radius: 15px;
 }
 
+.small_buton:hover {
+	padding: 15px;
+	background-color: #212224;
+	border-radius: 15px;
+}
+
 .textinput {
 	font-family: "Mojangles";
         font-optical-sizing: auto;

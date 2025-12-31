@@ -120,6 +120,7 @@ function panel_switch(port_check) {
 		toggle_gamemode.innerText = "Toggle Gamemode";
 		const set_mode = document.createElement("p");
 		set_mode.innerText = "Survival";
+		set_mode.setAttribute("class", "version-title");
 		set_mode.id = "set_mode";
 		document.getElementById("server-panel").appendChild(panel_heading);
 		document.getElementById("server-panel").appendChild(toggle_but);
@@ -128,8 +129,11 @@ function panel_switch(port_check) {
 		document.getElementById("server-panel").appendChild(command_input);
 		document.getElementById("server-panel").appendChild(command_submit);
 		if (port_check[1] == '1') {
+			document.getElementById("server-panel").appendChild(document.createElement("br"));
 			document.getElementById("server-panel").appendChild(allow_cheats);
+			document.getElementById("server-panel").appendChild(document.createElement("br"));
 		};
+		document.getElementById("server-panel").appendChild(document.createElement("br"))
 		document.getElementById("server-panel").appendChild(toggle_gamemode);
 		document.getElementById("server-panel").appendChild(set_mode);
 	} else {
