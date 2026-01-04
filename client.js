@@ -101,25 +101,30 @@ function panel_switch(port_check) {
 		command_submit.setAttribute("onclick", "submit_command()");
 		command_submit.innerText = "Run Command";
 		command_submit.id = "commandsubmit";
-		const allow_cheats = document.createElement("button");
+		const allow_cheats = document.createElement("p");
 		allow_cheats.innerText = "Toggle Cheats";
 		allow_cheats.setAttribute("onclick", "change_prop('AC')");
-		const toggle_gamemode = document.createElement("button");
+		allow_cheats.setAttribute("class", "para_button");
+		const toggle_gamemode = document.createElement("p");
 		toggle_gamemode.setAttribute("onclick", "change_prop('CG')");
 		toggle_gamemode.innerText = "Toggle Gamemode";
+		toggle_gamemode.setAttribute("class", "para_button");
+		const server_props = document.createElement("fieldset");
+		server_props.id = "server_prop";
+		const serverprops_title = document.createElement("legend");
+		serverprops_title.innerText = "Server Properties";
 		document.getElementById("server-panel").appendChild(panel_heading);
 		document.getElementById("server-panel").appendChild(toggle_but);
 		document.getElementById("server-panel").appendChild(port_contents);
 		document.getElementById("server-panel").appendChild(server_val);
 		document.getElementById("server-panel").appendChild(command_input);
 		document.getElementById("server-panel").appendChild(command_submit);
+		document.getElementById("server-panel").appendChild(server_props);
+		document.getElementById("server_prop").appendChild(serverprops_title);
 		if (port_check[1] == '1') {
-			document.getElementById("server-panel").appendChild(document.createElement("br"));
-			document.getElementById("server-panel").appendChild(allow_cheats);
-			document.getElementById("server-panel").appendChild(document.createElement("br"));
+			document.getElementById("server_prop").appendChild(allow_cheats);
 		};
-		document.getElementById("server-panel").appendChild(document.createElement("br"))
-		document.getElementById("server-panel").appendChild(toggle_gamemode);
+		document.getElementById("server_prop").appendChild(toggle_gamemode);
 	} else {
 		const view_heading = document.createElement("h1");
 		view_heading.innerText = "Make a Server";

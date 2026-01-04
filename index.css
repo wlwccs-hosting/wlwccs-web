@@ -35,6 +35,20 @@ body {
 	border-radius: 15px;
 }
 
+.para_button {
+	font-style: italic;
+	font-size: 16px;
+	transition: 0.4s;
+}
+
+.para_button:hover {
+	font-size: 20px;
+}
+
+fieldset {
+	border-radius: 12px;
+}
+
 .textinput {
 	font-family: "Mojangles";
         font-optical-sizing: auto;
