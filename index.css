@@ -52,6 +52,16 @@ body {
 	font-size: 12px;
 }
 
+a {
+	text-decoration: none;
+	color: white;
+	transition: 0.4s;
+}
+
+a:hover {
+	font-size: 18px;
+}
+
 .git-buton {
 	font-family: "Mojangles";
 	font-optical-sizing: auto;
