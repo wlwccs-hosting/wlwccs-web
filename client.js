@@ -17,7 +17,7 @@ async function account_do(type) {
 			age--;
 		};
 	};
-	if (type != 'S' || (type == 'S' && age >= 13) {
+	if (type != 'S' || (type == 'S' && age >= 13)) {
 		const username_val = document.getElementById("username").value;
 		const password_val = document.getElementById("password").value;
 		const token = await window.crypto.subtle.digest("SHA-256", EncryptData.encode(username_val.concat(password_val)));
