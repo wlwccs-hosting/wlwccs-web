@@ -9,6 +9,12 @@
 	white-space: pre-wrap;
 }
 
+code {
+	padding: 5px;
+	border-radius: 12px;
+	background-color: #171717;
+}
+
 body {
 	background-color: #4b4e52;
 	font-family: "Mojangles";
