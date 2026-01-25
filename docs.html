@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WLWCCS Hosting</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <script src="client.js"></script>
+                <link rel="stylesheet" type="text/css" href="index.css">
+	</head>
+	<body>
+		<div class="topbar">
+                        <span class="span-heading">WLWCCS Hosting</span>&nbsp
+                        <div class="a-topbar" align="right">
+                                <a href="index.html" class="buton">Home</a>&nbsp
+                                <a href="about.html" class="buton">About</a>&nbsp
+                                <a href="faq.html" class="buton">FAQ</a>&nbsp
+                                <a href="docs.html" class="buton">Docs</a>&nbsp
+                                <a href="signup.html" class="buton">Signup</a>&nbsp
+                                <a href="login.html" class="buton">Login</a>
+                        </div>
+                </div>
+                &nbsp
+		<h1>DOCS</h1>
+		<h2 class="version-title">How to Setup a Server</h2>
+		<p class="doc-t">
+		You'll want to first make an account.
+		In the menu-bar at the top of the page, you should see a button that says "Signup". Click on that and setup an account.
+		<i>NOTE: You must be at least 13 years old to make a WLWCCS account. You may read the <a href="policy.html">privacy policy</a> if you have any questions regarding this.</i>
+		Now, once the signup process finishes successfully you will be taken to a screen where it'll ask you to choose between three differents options:
+		<ul>
+			<li>A bedrock server</li>
+			<li>A java server</li>
+			<li>A bedrock & java server</li>
+		</ul>
+		Now, which one you choose heavily depends on what you want out of the server.
+		If you are playing on Bedrock edition and the other players who will be on the server also use bedrock - choose the Bedrock option. Bedrock servers are also generally smaller and faster than the other options.
+		If you are playing on Java edition and the other players who will be on the server also use java - choose the Java option.
+		If you have a mix of both edition players - use the Bedrock & Java option, which uses the standalone Geyser plugin. There is the downside though that Bedrock players may experience some lag or weird movement bugs.
+
+		Once you choose your option - you should then be taken to a server panel!
+		
+		When you make a server it is off by default. When you want to play on your server, press the "Toggle Server" option to turn it on and off when needed!
+		Underneath you'll see the port number. This is crucial for when you actually want to join the server.
+
+		When in Minecraft trying to add and play the server - set the IP address section to <b>wlwccs.duckdns.org</b> and set the port number to whatever you saw underneath the toggle button.
+		
+		If you want to do anything else:
+		If you want to toggle cheats on the server - there's a button just for that in the server properties section of your server panel. By default, cheats are disabled.
+		If you want to toggle the default gamemode on the server - there's a button for that in the server properties section of your panel. By default, the gamemode is Survival.
+		There is also a field above the server properties section which is where you would input commands. Note that <b>most commands do not work without cheats enabled.</b>
+		Note that also you must <b>drop the / at the start of the command like you would in Minecraft for the command to actually work.</b>
+		</p>
+		<h2 class="version-title">Repository Documentation</h2>
+		<p class="doc-t">
+		The WLWCCS website is completely open-source on GitHub. If you are interested in contributing to the repo, this is where you'll want to go for a guide.
+
+		The main file is <code>client.js</code> as this is the file that is responsible for managing any communication from the website to the server I host.
+		This includes configuring the servers, configuring server properties and managing accounts.
+		The communcation is done over Secure WebSockets, and there are three specific structures the requests follow to portray ideas.
+
+		The first one is called <b>Account Specific Requests.</b>
+		These are structured as <code>X#Y</code>, where X is the type of request (e.g. NB to make a new bedrock server) and Y is the current account's ID.
+		These require account ids as these requests apply to specific accounts - like running one server in particular.
+
+		The second one is called <b>Error Check Requests.</b>
+		These are structured as <code>XY</code>, where X is the type of request (e.g. S for the signup process) and Y is the error code (either 0 or 1).
+		These do not require account ids as usually it's during these requests that the account ID of the client hasn't been determined yet.
+		These are used throughout the signup or login process. They are also used for determining the client's account ID so then ASRs can be made available.
+
+		The third and last one is called <b>Triple Section Requests.</b>
+		These are structured as <code>X#Y#Z</code>, where X is the type of request (e.g. G for server property toggles), Y is the property and Z is the account ID.
+		These are similar to ASRs, as they apply to specific servers - hence requiring an account ID.
+		These are used for server property toggles - such as changing the gamemode of a server from Survival to Creative. 
+		</p>
+		<p>If you wish to see info regarding our privacy policy - <a href="policy.html">click here.</a></p>
+		<p>If you wish to see info regarding our terms and conditions - <a href="terms.html">click here.</a></p>
+	</body>
+</html>
