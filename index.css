@@ -9,6 +9,10 @@
 	white-space: pre-wrap;
 }
 
+.affiliate {
+	color: #dbdbdb;
+}
+
 code {
 	padding: 5px;
 	border-radius: 12px;
