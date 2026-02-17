@@ -72,6 +72,7 @@ function create_server(bedrock, java) {
 	for (let i = 0; i < server_panel.length; i++) {
 		server_panel[i].remove();
 	};
+	socket.send(account_key.concat("Z"));
 	const create_notice = document.createElement("h1");
 	create_notice.innerText = "Server is being made.";
 	const create_notice2 = document.createElement("p");
