@@ -72,7 +72,6 @@ function create_server(bedrock, java) {
 	for (let i = 0; i < server_panel.length; i++) {
 		server_panel[i].remove();
 	};
-	// socket.send(account_key.concat("Z"));
 	const create_notice = document.createElement("h1");
 	create_notice.innerText = "Server is being made.";
 	const create_notice2 = document.createElement("p");
@@ -222,8 +221,6 @@ socket.onmessage = (event) => {
 		// panel_switch(event.data);
 	} else if (event.data[0] == 'T') {
 		panel_switch(event.data);
-	} else if (event.data == 'Z') {
-		socket.send(account_key.concat("Z"));
 	} else {
 		if (event.data == "off" || event.data == "none" || event.data == "on") {
 			received_status = event.data;
